@@ -1,4 +1,5 @@
 import { Btn } from "@/components/btn";
+import { Container } from "@/components/container";
 import { Eyebrow } from "@/components/section";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
@@ -6,6 +7,7 @@ import { site } from "@/content/site";
 export function Pricing() {
   return (
     <section id="services" className="border-b">
+      <Container>
       <div className="px-5 pt-16 md:px-10 md:pt-24">
         <Eyebrow>Услуги и цены</Eyebrow>
         <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
@@ -102,6 +104,7 @@ export function Pricing() {
           );
         })}
       </div>
+      </Container>
     </section>
   );
 }

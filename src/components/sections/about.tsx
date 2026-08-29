@@ -1,12 +1,14 @@
 import { User } from "lucide-react";
 
 import { Btn } from "@/components/btn";
+import { Container } from "@/components/container";
 import { Eyebrow } from "@/components/section";
 import { contacts, site } from "@/content/site";
 
 export function About() {
   return (
-    <section id="about" className="flex flex-col border-b md:flex-row">
+    <section id="about" className="border-b">
+      <Container className="flex flex-col md:flex-row">
       {/* Заглушка под фото */}
       <div className="flex aspect-square items-center justify-center border-b bg-paper-2 md:w-[38%] md:border-b-0 md:border-r">
         <User className="size-16 text-caption" />
@@ -26,6 +28,7 @@ export function About() {
           </Btn>
         </div>
       </div>
+      </Container>
     </section>
   );
 }

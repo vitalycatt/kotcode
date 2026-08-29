@@ -1,9 +1,11 @@
+import { Container } from "@/components/container";
 import { Eyebrow } from "@/components/section";
 import { site } from "@/content/site";
 
 export function Problems() {
   return (
     <section id="problems" className="border-b">
+      <Container>
       <div className="px-5 pt-16 md:px-10 md:pt-24">
         <Eyebrow>{site.problems.title}</Eyebrow>
         <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
@@ -32,6 +34,7 @@ export function Problems() {
           </div>
         ))}
       </div>
+      </Container>
     </section>
   );
 }

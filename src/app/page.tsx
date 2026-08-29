@@ -13,8 +13,12 @@ import { FloatingContact } from "@/components/floating-contact";
 export default function Home() {
   return (
     <>
-      {/* Рамка эталона: 1px, max-width 1280, всё внутри разделено хайрлайнами */}
-      <div id="top" className="mx-auto w-full max-w-[1280px] flex-1 border">
+      {/*
+        Горизонтальные разделители — full-width (border-b на секциях идёт через
+        весь экран), контент внутри ограничен Container'ом 1280 с боковыми
+        вертикальными хайрлайнами.
+      */}
+      <div id="top" className="w-full flex-1 border-t">
         <Header />
         <main>
           <Hero />

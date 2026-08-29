@@ -1,13 +1,15 @@
 import { Play } from "lucide-react";
 
 import { Btn } from "@/components/btn";
+import { Container } from "@/components/container";
 import { site } from "@/content/site";
 
 export function Hero() {
   return (
     <>
       {/* Сплит-герой: слева синяя плашка 46%, справа видео-ячейка */}
-      <section className="flex flex-col border-b md:flex-row">
+      <section className="border-b">
+        <Container className="flex flex-col md:flex-row">
         <div className="bg-accent px-5 pb-10 pt-14 text-on-accent md:w-[46%] md:border-r md:px-10">
           <h1 className="text-[clamp(34px,4.4vw,60px)] font-semibold leading-[1.02] tracking-[-0.03em]">
             {site.hero.title}
@@ -34,26 +36,29 @@ export function Hero() {
             {site.hero.videoCaption}
           </div>
         </div>
+        </Container>
       </section>
 
       {/* Полоса из трёх метрик, разделённых хайрлайнами */}
-      <section className="flex flex-col border-b sm:flex-row">
-        {site.metrics.map((m, i) => (
-          <div
-            key={m.l}
-            className={
-              "flex-1 px-5 py-5 " +
-              (i < site.metrics.length - 1
-                ? "border-b sm:border-b-0 sm:border-r"
-                : "")
-            }
-          >
-            <div className="text-[30px] font-semibold tracking-[-0.02em]">
-              {m.n}
+      <section className="border-b">
+        <Container className="flex flex-col sm:flex-row">
+          {site.metrics.map((m, i) => (
+            <div
+              key={m.l}
+              className={
+                "flex-1 px-5 py-5 " +
+                (i < site.metrics.length - 1
+                  ? "border-b sm:border-b-0 sm:border-r"
+                  : "")
+              }
+            >
+              <div className="text-[30px] font-semibold tracking-[-0.02em]">
+                {m.n}
+              </div>
+              <div className="mt-1 text-xs text-caption">{m.l}</div>
             </div>
-            <div className="mt-1 text-xs text-caption">{m.l}</div>
-          </div>
-        ))}
+          ))}
+        </Container>
       </section>
     </>
   );

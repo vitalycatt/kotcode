@@ -1,10 +1,12 @@
 import { ImageIcon } from "lucide-react";
 
+import { Container } from "@/components/container";
 import { site } from "@/content/site";
 
 export function Cases() {
   return (
-    <section id="cases" className="surface-ink border-b">
+    <section id="cases" className="border-b">
+      <Container className="surface-ink">
       <div className="px-5 pt-16 md:px-10 md:pt-24">
         <div className="text-xs font-medium uppercase tracking-[0.06em] text-paper/60">
           Кейсы
@@ -61,6 +63,7 @@ export function Cases() {
           </div>
         ))}
       </div>
+      </Container>
     </section>
   );
 }

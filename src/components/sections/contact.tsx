@@ -1,14 +1,13 @@
 import { Btn } from "@/components/btn";
+import { Container } from "@/components/container";
 import { contacts, site } from "@/content/site";
 
 const channels = [contacts.telegram, contacts.whatsapp, contacts.email];
 
 export function Contact() {
   return (
-    <section
-      id="contact"
-      className="border-b bg-accent px-5 py-16 text-on-accent md:px-10 md:py-24"
-    >
+    <section id="contact" className="border-b">
+      <Container className="bg-accent px-5 py-16 text-on-accent md:px-10 md:py-24">
       <div className="text-xs font-medium uppercase tracking-[0.06em] text-on-accent/70">
         Контакты
       </div>
@@ -26,6 +25,7 @@ export function Contact() {
       </div>
 
       <p className="mt-6 text-sm text-on-accent/70">{site.contact.note}</p>
+      </Container>
     </section>
   );
 }
