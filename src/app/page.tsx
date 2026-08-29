@@ -13,18 +13,21 @@ import { FloatingContact } from "@/components/floating-contact";
 export default function Home() {
   return (
     <>
-      <Header />
-      <main className="flex-1">
-        <Hero />
-        <Problems />
-        <Pricing />
-        <Cases />
-        <Process />
-        <About />
-        <Faq />
-        <Contact />
-      </main>
-      <Footer />
+      {/* Рамка эталона: 1px, max-width 1280, всё внутри разделено хайрлайнами */}
+      <div id="top" className="mx-auto w-full max-w-[1280px] flex-1 border">
+        <Header />
+        <main>
+          <Hero />
+          <Problems />
+          <Pricing />
+          <Cases />
+          <Process />
+          <About />
+          <Faq />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
       <FloatingContact />
     </>
   );

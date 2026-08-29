@@ -10,7 +10,7 @@ export function FloatingContact() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={site.cta.writeIn(primaryContact.label)}
-      className="fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-105 md:hidden"
+      className="fixed bottom-5 right-5 z-50 flex size-14 items-center justify-center border border-ink bg-accent text-on-accent transition-colors hover:bg-on-accent hover:text-accent md:hidden"
     >
       <Send className="size-6" />
     </a>

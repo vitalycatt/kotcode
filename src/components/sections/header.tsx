@@ -1,40 +1,34 @@
-import Link from "next/link";
-
 import { Logo } from "@/components/logo";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <Link href="/" aria-label={site.brand.name}>
-          <Logo />
-        </Link>
+    <header className="flex border-b">
+      {/* Монограмма в рамке слева */}
+      <a
+        href="#top"
+        aria-label={site.brand.name}
+        className="border-r px-5 py-4 text-[17px]"
+      >
+        <Logo />
+      </a>
 
-        <nav className="hidden items-center gap-6 md:flex">
-          {site.nav.map((item) => (
-            <a
-              key={item.id}
-              href={`#${item.id}`}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+      {/* Навигация — UPPERCASE, мелкая, с трекингом */}
+      <nav className="hidden flex-1 items-center gap-7 px-5 text-xs font-medium uppercase tracking-[0.06em] md:flex">
+        {site.nav.map((item) => (
+          <a key={item.id} href={`#${item.id}`} className="hover:text-accent">
+            {item.label}
+          </a>
+        ))}
+      </nav>
 
-        <div className="flex items-center gap-2">
-          <ThemeToggle />
-          <Button
-            render={<a href="#contact" />}
-            className="hidden sm:inline-flex"
-          >
-            {site.cta.primary}
-          </Button>
-        </div>
-      </div>
+      {/* Правый бокс в рамке — контурный CTA вместо языкового тумблера */}
+      <a
+        href="#contact"
+        className="ml-auto flex items-center border-l px-5 text-xs font-medium uppercase tracking-[0.06em] transition-colors hover:bg-ink hover:text-paper md:ml-0"
+      >
+        Написать
+      </a>
     </header>
   );
 }

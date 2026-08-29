@@ -1,43 +1,40 @@
-import { Camera, Mail, MessageCircle, Send } from "lucide-react";
-
 import { Logo } from "@/components/logo";
 import { contacts, site } from "@/content/site";
 
 const socials = [
-  { data: contacts.telegram, icon: Send },
-  { data: contacts.whatsapp, icon: MessageCircle },
-  { data: contacts.instagram, icon: Camera },
-  { data: contacts.email, icon: Mail },
+  contacts.telegram,
+  contacts.whatsapp,
+  contacts.instagram,
+  contacts.email,
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-10 sm:flex-row">
-        <div className="text-center sm:text-left">
-          <Logo />
-          <p className="mt-2 text-sm text-muted-foreground">
-            {site.footer.tagline}
-          </p>
+    <footer>
+      <div className="flex flex-col gap-8 px-5 py-10 md:flex-row md:items-start md:justify-between md:px-10">
+        <div>
+          <div className="text-[17px]">
+            <Logo />
+          </div>
+          <p className="mt-3 text-sm text-caption">{site.footer.tagline}</p>
         </div>
 
-        <div className="flex items-center gap-4">
-          {socials.map(({ data, icon: Icon }) => (
+        <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-[0.06em]">
+          {socials.map((s) => (
             <a
-              key={data.label}
-              href={data.href}
+              key={s.label}
+              href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={data.label}
-              className="text-muted-foreground transition-colors hover:text-foreground"
+              className="hover:text-accent"
             >
-              <Icon className="size-5" />
+              {s.label}
             </a>
           ))}
         </div>
       </div>
 
-      <div className="border-t py-4 text-center text-xs text-muted-foreground">
+      <div className="border-t px-5 py-4 text-xs text-caption md:px-10">
         © {new Date().getFullYear()} {site.brand.name} · {site.brand.domain} ·{" "}
         {site.footer.rights}
       </div>

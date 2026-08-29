@@ -1,50 +1,65 @@
 import { ImageIcon } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { site } from "@/content/site";
 
 export function Cases() {
   return (
-    <section id="cases" className="border-t bg-muted/30">
-      <div className="mx-auto max-w-6xl px-4 py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            {site.cases.title}
-          </h2>
-          <p className="mt-4 text-muted-foreground">{site.cases.subtitle}</p>
+    <section id="cases" className="surface-ink border-b">
+      <div className="px-5 pt-16 md:px-10 md:pt-24">
+        <div className="text-xs font-medium uppercase tracking-[0.06em] text-paper/60">
+          Кейсы
         </div>
+        <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+          {site.cases.title}
+        </h2>
+        <p className="mt-4 max-w-2xl text-paper/70">{site.cases.subtitle}</p>
+      </div>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {site.cases.items.map((item) => (
-            <Card key={item.id} className="overflow-hidden pt-0">
-              {/* Заглушка под скриншот — соотношение 16:10 */}
-              <div className="flex aspect-[16/10] items-center justify-center bg-muted text-muted-foreground">
-                <ImageIcon className="size-10 opacity-40" />
+      <div className="mt-12 flex flex-col md:mt-16 md:flex-row md:border-t">
+        {site.cases.items.map((item, i) => (
+          <div
+            key={item.id}
+            className={
+              "flex-1 " +
+              (i < site.cases.items.length - 1
+                ? "border-b md:border-b-0 md:border-r"
+                : "")
+            }
+          >
+            {/* Заглушка под скриншот — 16:10 */}
+            <div className="flex aspect-[16/10] items-center justify-center border-b bg-ink">
+              <ImageIcon className="size-10 text-paper/30" />
+            </div>
+
+            <div className="px-5 py-8 md:px-8 md:py-10">
+              <div className="flex flex-wrap gap-2">
+                {item.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-paper px-2 py-1 text-[10px] font-medium uppercase tracking-[0.08em]"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <CardHeader>
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag) => (
-                    <Badge key={tag} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-                <CardTitle className="mt-2">{item.name}</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 text-sm">
+
+              <h3 className="mt-4 text-xl font-semibold tracking-[-0.02em]">
+                {item.name}
+              </h3>
+
+              <div className="mt-4 space-y-3 text-sm text-paper/80">
                 <p>
-                  <span className="font-medium text-foreground">Задача. </span>
-                  <span className="text-muted-foreground">{item.task}</span>
+                  <span className="text-paper">Задача. </span>
+                  {item.task}
                 </p>
                 <p>
-                  <span className="font-medium text-foreground">Решение. </span>
-                  <span className="text-muted-foreground">{item.solution}</span>
+                  <span className="text-paper">Решение. </span>
+                  {item.solution}
                 </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -1,48 +1,54 @@
-import { ShieldCheck } from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Eyebrow } from "@/components/section";
 import { site } from "@/content/site";
 
 export function Process() {
   return (
-    <section id="process" className="border-t">
-      <div className="mx-auto max-w-6xl px-4 py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-            {site.process.title}
-          </h2>
-          <p className="mt-4 text-muted-foreground">{site.process.subtitle}</p>
-        </div>
+    <section id="process" className="border-b">
+      <div className="px-5 pt-16 md:px-10 md:pt-24">
+        <Eyebrow>Как я работаю</Eyebrow>
+        <h2 className="mt-4 max-w-2xl text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+          {site.process.title}
+        </h2>
+        <p className="mt-4 max-w-2xl text-caption">{site.process.subtitle}</p>
+      </div>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {site.process.steps.map((step) => (
-            <Card key={step.step} className="h-full">
-              <CardHeader>
-                <span className="text-3xl font-bold text-primary/40">
-                  {step.step}
-                </span>
-                <CardTitle className="mt-2 text-lg">{step.title}</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                {step.text}
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      <div className="mt-12 flex flex-col md:mt-16 md:flex-row md:border-t">
+        {site.process.steps.map((step, i) => (
+          <div
+            key={step.step}
+            className={
+              "flex-1 px-5 py-8 md:px-8 md:py-12 " +
+              (i < site.process.steps.length - 1
+                ? "border-b md:border-b-0 md:border-r"
+                : "")
+            }
+          >
+            <div className="text-2xl font-semibold tracking-[-0.02em] text-accent">
+              {step.step}
+            </div>
+            <h3 className="mt-4 text-lg font-semibold tracking-[-0.02em]">
+              {step.title}
+            </h3>
+            <p className="mt-3 text-sm text-caption">{step.text}</p>
+          </div>
+        ))}
+      </div>
 
-        <div className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-3">
-          {site.process.guarantees.map((g) => (
-            <Badge
-              key={g}
-              variant="outline"
-              className="gap-1.5 px-3 py-1.5 text-sm"
-            >
-              <ShieldCheck className="size-4 text-primary" />
-              {g}
-            </Badge>
-          ))}
-        </div>
+      {/* Гарантии — полоса UPPERCASE-меток через хайрлайны */}
+      <div className="flex flex-col border-t sm:flex-row">
+        {site.process.guarantees.map((g, i) => (
+          <div
+            key={g}
+            className={
+              "flex-1 px-5 py-4 text-xs font-medium uppercase tracking-[0.06em] " +
+              (i < site.process.guarantees.length - 1
+                ? "border-b sm:border-b-0 sm:border-r"
+                : "")
+            }
+          >
+            {g}
+          </div>
+        ))}
       </div>
     </section>
   );
