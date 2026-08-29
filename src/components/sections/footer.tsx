@@ -2,12 +2,7 @@ import { Container } from "@/components/container";
 import { Logo } from "@/components/logo";
 import { contacts, site } from "@/content/site";
 
-const socials = [
-  contacts.telegram,
-  contacts.whatsapp,
-  contacts.instagram,
-  contacts.email,
-];
+const socials = [contacts.telegram, contacts.instagram, contacts.email];
 
 export function Footer() {
   return (

@@ -15,22 +15,16 @@ export type ContactChannel = {
 
 export type Contacts = {
   telegram: ContactChannel;
-  whatsapp: ContactChannel;
   instagram: ContactChannel;
   email: ContactChannel;
 };
 
-// TODO: подтвердить реальные хендлы/ссылки перед публикацией.
+// TODO: подтвердить Telegram-хендл перед публикацией.
 export const contacts: Contacts = {
   telegram: {
     label: "Telegram",
     href: "https://t.me/vitalycatt",
     handle: "@vitalycatt",
-  },
-  whatsapp: {
-    label: "WhatsApp",
-    href: "https://wa.me/00000000000",
-    handle: "WhatsApp",
   },
   instagram: {
     label: "Instagram",
@@ -39,8 +33,8 @@ export const contacts: Contacts = {
   },
   email: {
     label: "Email",
-    href: "mailto:hello@kotcode.dev",
-    handle: "hello@kotcode.dev",
+    href: "mailto:vitalycatt@gmail.com",
+    handle: "vitalycatt@gmail.com",
   },
 };
 

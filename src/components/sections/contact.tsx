@@ -2,7 +2,7 @@ import { Btn } from "@/components/btn";
 import { Container } from "@/components/container";
 import { contacts, site } from "@/content/site";
 
-const channels = [contacts.telegram, contacts.whatsapp, contacts.email];
+const channels = [contacts.telegram, contacts.instagram, contacts.email];
 
 export function Contact() {
   return (
