@@ -157,6 +157,8 @@ export const site = {
         id: "klining",
         name: "Klining Group — мойка плитки и брусчатки",
         url: "https://klining-group.by/",
+        image: "/cases/klining-hero.webp",
+        image2: "/cases/klining-2.webp",
         task: "Человек с телефона за минуту понимает услугу и оставляет заявку.",
         solution:
           "Лендинг под услугу мойки тротуарной плитки и брусчатки в Бресте: заголовок с оффером, галерея работ, форма заявки и кнопки в мессенджеры.",
@@ -166,6 +168,8 @@ export const site = {
         id: "gammagracia",
         name: "Gamma Gracia — магазин женской одежды",
         url: "https://gammagracia.com/",
+        image: "/cases/gammagracia-hero.webp",
+        image2: "/cases/gammagracia-2.webp",
         task: "Полноценный магазин бренда, которым владелец управляет сам.",
         solution:
           "Интернет-магазин женской одежды: каталог с фильтрами, коллекции, корзина, личный кабинет и избранное, мультивалютность (BYN / RUB / KZT).",

@@ -1,4 +1,5 @@
-import { ArrowUpRight, ImageIcon } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/container";
 import { site } from "@/content/site";
@@ -28,15 +29,41 @@ export function Cases() {
                 : "")
             }
           >
-            {/* Заглушка под скриншот — 16:10, кликабельна на живой сайт */}
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex aspect-[16/10] items-center justify-center border-b bg-ink transition-colors hover:bg-[#181818]"
-            >
-              <ImageIcon className="size-10 text-paper/30 transition-colors group-hover:text-paper/50" />
-            </a>
+            {/*
+              Скриншоты: главный экран + второй, оба ведут на живой сайт.
+              Тёмный медиа-блок с отступами и зазором + рамка у каждого кадра —
+              чтобы светлые скриншоты визуально отделялись друг от друга.
+            */}
+            <div className="space-y-4 border-b p-4 md:space-y-6 md:p-6">
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block aspect-[16/10] border border-paper/25 bg-paper-2 transition-colors hover:border-paper/60"
+              >
+                <Image
+                  src={item.image}
+                  alt={`${item.name} — главный экран`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 620px"
+                  className="object-cover object-top"
+                />
+              </a>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative block aspect-[16/9] border border-paper/25 bg-paper-2 transition-colors hover:border-paper/60"
+              >
+                <Image
+                  src={item.image2}
+                  alt={`${item.name} — внутренний экран`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 620px"
+                  className="object-cover object-top"
+                />
+              </a>
+            </div>
 
             <div className="px-5 py-8 md:px-8 md:py-10">
               <div className="flex flex-wrap gap-2">

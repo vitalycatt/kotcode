@@ -39,6 +39,9 @@ yarn-error.log*
 # local context / brief (not committed)
 /docs/
 
+# raw image sources — оптимизируются в public/cases через npm run optimize:images
+/assets/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
