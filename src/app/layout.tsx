@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
+import { YandexMetrica } from "@/components/analytics/yandex-metrica";
 import { site } from "@/content/site";
+
+const yandexMetricaId = process.env.NEXT_PUBLIC_YANDEX_METRICA_ID;
 
 // Эталон использует Archivo, но у него нет кириллицы. Inter Tight — его же
 // фолбэк из эталона: тот же гротеск, но с поддержкой кириллицы.
@@ -62,6 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {yandexMetricaId && <YandexMetrica counterId={yandexMetricaId} />}
       </body>
     </html>
   );
