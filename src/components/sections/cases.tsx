@@ -1,4 +1,4 @@
-import { ImageIcon } from "lucide-react";
+import { ArrowUpRight, ImageIcon } from "lucide-react";
 
 import { Container } from "@/components/container";
 import { site } from "@/content/site";
@@ -28,10 +28,15 @@ export function Cases() {
                 : "")
             }
           >
-            {/* Заглушка под скриншот — 16:10 */}
-            <div className="flex aspect-[16/10] items-center justify-center border-b bg-ink">
-              <ImageIcon className="size-10 text-paper/30" />
-            </div>
+            {/* Заглушка под скриншот — 16:10, кликабельна на живой сайт */}
+            <a
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex aspect-[16/10] items-center justify-center border-b bg-ink transition-colors hover:bg-[#181818]"
+            >
+              <ImageIcon className="size-10 text-paper/30 transition-colors group-hover:text-paper/50" />
+            </a>
 
             <div className="px-5 py-8 md:px-8 md:py-10">
               <div className="flex flex-wrap gap-2">
@@ -59,6 +64,16 @@ export function Cases() {
                   {item.solution}
                 </p>
               </div>
+
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-paper hover:text-accent"
+              >
+                Открыть сайт
+                <ArrowUpRight className="size-4" />
+              </a>
             </div>
           </div>
         ))}
