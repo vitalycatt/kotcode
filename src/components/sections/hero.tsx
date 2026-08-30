@@ -1,4 +1,4 @@
-import { Play } from "lucide-react";
+import Image from "next/image";
 
 import { Btn } from "@/components/btn";
 import { Container } from "@/components/container";
@@ -27,16 +27,28 @@ export function Hero() {
           </Btn>
         </div>
 
-        {/* Видео-ячейка: заглушка paper-2 с play-кнопкой (место под <video>) */}
-        <div className="relative flex min-h-[240px] flex-1 items-center justify-center border-t bg-paper-2 md:min-h-[460px] md:border-t-0">
-          {/*
-            Место под фоновое видео:
-            <video muted autoPlay loop playsInline poster="/hero-poster.jpg" ... />
-            На мобильных — статичный постер вместо автоплея.
-          */}
-          <div className="flex size-16 items-center justify-center border">
-            <Play className="size-5" />
-          </div>
+        {/* Видео-ячейка: фоновый луп на десктопе, статичный постер на мобильных */}
+        <div className="relative min-h-[240px] flex-1 overflow-hidden border-t bg-paper-2 md:min-h-[460px] md:border-t-0">
+          {/* Мобильные: только постер, видео не грузим */}
+          <Image
+            src="/hero/hero-poster.webp"
+            alt="Пример работы — интернет-магазин Gamma Gracia"
+            fill
+            sizes="100vw"
+            className="object-cover object-top md:hidden"
+          />
+          {/* Десктоп: фоновое видео без звука, с автоплеем и лупом */}
+          <video
+            className="absolute inset-0 hidden size-full object-cover object-top md:block"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/hero/hero-poster.webp"
+          >
+            <source src="/hero/hero.mp4" type="video/mp4" />
+          </video>
           <div className="absolute bottom-4 left-5 text-[11px] uppercase tracking-[0.06em] text-caption">
             {site.hero.videoCaption}
           </div>

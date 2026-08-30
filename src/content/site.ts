@@ -69,7 +69,7 @@ export const site = {
     subtitle:
       "Лендинг за 3 дня. Магазин с админкой за неделю. Бот отвечает клиентам, пока вы спите. От $350, домен и запуск под ключ.",
     note: "Без брифов на 40 вопросов и месяца молчания в ответ.",
-    videoCaption: "Видео · кейс мойки фасадов",
+    videoCaption: "Видео · живые проекты",
   },
 
   metrics: [
@@ -157,11 +157,7 @@ export const site = {
         id: "klining",
         name: "Klining Group — мойка плитки и брусчатки",
         url: "https://klining-group.by/",
-        images: [
-          "/cases/klining-hero.webp",
-          "/cases/klining-2.webp",
-          "/cases/klining-3.webp",
-        ],
+        images: ["/cases/klining-hero.webp"],
         task: "Человек с телефона за минуту понимает услугу и оставляет заявку.",
         solution:
           "Лендинг под услугу мойки тротуарной плитки и брусчатки в Бресте: заголовок с оффером, галерея работ, форма заявки и кнопки в мессенджеры.",
@@ -171,11 +167,7 @@ export const site = {
         id: "gammagracia",
         name: "Gamma Gracia — магазин женской одежды",
         url: "https://gammagracia.com/",
-        images: [
-          "/cases/gammagracia-hero.webp",
-          "/cases/gammagracia-2.webp",
-          "/cases/gammagracia-admin.webp",
-        ],
+        images: ["/cases/gammagracia-hero.webp"],
         task: "Полноценный магазин бренда, которым владелец управляет сам.",
         solution:
           "Интернет-магазин женской одежды: каталог с фильтрами, коллекции, корзина и избранное, мультивалютность (BYN / RUB / KZT). Плюс своя админка — владелец сам добавляет товары, категории, коллекции и ведёт заказы.",
