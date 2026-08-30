@@ -17,7 +17,12 @@ export function Hero() {
           <p className="my-8 max-w-[34ch] text-base leading-[1.5]">
             {site.hero.subtitle}
           </p>
-          <Btn href="#contact" variant="onAccent">
+          <Btn
+            href="#contact"
+            variant="onAccent"
+            goal="cta_contact"
+            goalParams={{ place: "hero" }}
+          >
             {site.cta.primary}
           </Btn>
         </div>

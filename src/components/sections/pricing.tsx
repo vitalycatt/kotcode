@@ -96,6 +96,8 @@ export function Pricing() {
                   href="#contact"
                   variant={accent ? "onAccent" : "onLight"}
                   className="w-full"
+                  goal="cta_contact"
+                  goalParams={{ place: "pricing", plan: pkg.id }}
                 >
                   {site.cta.primary}
                 </Btn>

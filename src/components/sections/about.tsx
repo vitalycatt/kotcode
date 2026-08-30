@@ -29,7 +29,12 @@ export function About() {
         <p className="mt-5 max-w-xl text-caption">{site.about.text}</p>
 
         <div className="mt-8">
-          <Btn href={contacts.instagram.href} external>
+          <Btn
+            href={contacts.instagram.href}
+            external
+            goal="msg_instagram"
+            goalParams={{ place: "about" }}
+          >
             {site.about.instagramLabel}
           </Btn>
         </div>

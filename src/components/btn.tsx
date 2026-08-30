@@ -1,3 +1,6 @@
+"use client";
+
+import { trackGoal } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type Variant = "onLight" | "onAccent" | "onInk";
@@ -17,6 +20,9 @@ type BtnProps = {
   variant?: Variant;
   external?: boolean;
   className?: string;
+  // Необязательная цель Яндекс.Метрики, отправляется по клику.
+  goal?: string;
+  goalParams?: Record<string, unknown>;
 };
 
 /** Контурная кнопка-ссылка из эталона: 1px рамка, прямые углы, инверсия на hover. */
@@ -26,6 +32,8 @@ export function Btn({
   variant = "onLight",
   external = false,
   className,
+  goal,
+  goalParams,
 }: BtnProps) {
   const externalProps = external
     ? { target: "_blank", rel: "noopener noreferrer" }
@@ -35,6 +43,7 @@ export function Btn({
     <a
       href={href}
       {...externalProps}
+      onClick={goal ? () => trackGoal(goal, goalParams) : undefined}
       className={cn(
         "inline-flex items-center justify-center gap-2 border px-6 py-3.5 text-xs font-medium uppercase tracking-[0.08em] transition-colors",
         variants[variant],

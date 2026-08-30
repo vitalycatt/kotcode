@@ -2,7 +2,11 @@ import { Btn } from "@/components/btn";
 import { Container } from "@/components/container";
 import { contacts, site } from "@/content/site";
 
-const channels = [contacts.telegram, contacts.instagram, contacts.email];
+const channels = [
+  { data: contacts.telegram, goal: "msg_telegram" },
+  { data: contacts.instagram, goal: "msg_instagram" },
+  { data: contacts.email, goal: "msg_email" },
+];
 
 export function Contact() {
   return (
@@ -17,9 +21,16 @@ export function Contact() {
       <p className="mt-4 max-w-xl text-on-accent/90">{site.contact.subtitle}</p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-        {channels.map((c) => (
-          <Btn key={c.label} href={c.href} variant="onAccent" external>
-            {c.handle ?? c.label}
+        {channels.map(({ data, goal }) => (
+          <Btn
+            key={data.label}
+            href={data.href}
+            variant="onAccent"
+            external
+            goal={goal}
+            goalParams={{ place: "contact" }}
+          >
+            {data.handle ?? data.label}
           </Btn>
         ))}
       </div>

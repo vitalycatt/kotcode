@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/container";
+import { GoalLink } from "@/components/goal-link";
 import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 
@@ -37,11 +38,13 @@ export function Cases() {
             */}
             <div className="space-y-4 border-b p-4 md:space-y-6 md:p-6">
               {item.images.map((src, idx) => (
-                <a
+                <GoalLink
                   key={src}
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  goal="case_visit"
+                  goalParams={{ case: item.id }}
                   className={cn(
                     "relative block border border-paper/25 bg-paper-2 transition-colors hover:border-paper/60",
                     idx === 0 ? "aspect-[16/10]" : "aspect-[16/9]",
@@ -54,7 +57,7 @@ export function Cases() {
                     sizes="(max-width: 768px) 100vw, 620px"
                     className="object-cover object-top"
                   />
-                </a>
+                </GoalLink>
               ))}
             </div>
 
@@ -85,15 +88,17 @@ export function Cases() {
                 </p>
               </div>
 
-              <a
+              <GoalLink
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                goal="case_visit"
+                goalParams={{ case: item.id }}
                 className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-paper hover:text-accent"
               >
                 Открыть сайт
                 <ArrowUpRight className="size-4" />
-              </a>
+              </GoalLink>
             </div>
           </div>
         ))}
