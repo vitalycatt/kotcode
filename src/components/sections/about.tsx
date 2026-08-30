@@ -1,4 +1,4 @@
-import { User } from "lucide-react";
+import Image from "next/image";
 
 import { Btn } from "@/components/btn";
 import { Container } from "@/components/container";
@@ -9,9 +9,15 @@ export function About() {
   return (
     <section id="about" className="border-b">
       <Container className="flex flex-col md:flex-row">
-      {/* Заглушка под фото */}
-      <div className="flex aspect-square items-center justify-center border-b bg-paper-2 md:w-[38%] md:border-b-0 md:border-r">
-        <User className="size-16 text-caption" />
+      {/* Фото */}
+      <div className="relative aspect-square border-b bg-paper-2 md:w-[38%] md:border-b-0 md:border-r">
+        <Image
+          src={site.about.photo}
+          alt={site.about.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 480px"
+          className="object-cover object-top"
+        />
       </div>
 
       <div className="flex-1 px-5 py-10 md:px-10 md:py-16">

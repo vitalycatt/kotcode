@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
 import { Container } from "@/components/container";
+import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 
 export function Cases() {
@@ -30,39 +31,31 @@ export function Cases() {
             }
           >
             {/*
-              Скриншоты: главный экран + второй, оба ведут на живой сайт.
-              Тёмный медиа-блок с отступами и зазором + рамка у каждого кадра —
-              чтобы светлые скриншоты визуально отделялись друг от друга.
+              Скриншоты в тёмном медиа-блоке с отступами, зазором и рамкой у
+              каждого кадра — чтобы светлые скриншоты визуально отделялись.
+              Первый кадр — главный экран (16:10), остальные — внутренние (16:9).
             */}
             <div className="space-y-4 border-b p-4 md:space-y-6 md:p-6">
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block aspect-[16/10] border border-paper/25 bg-paper-2 transition-colors hover:border-paper/60"
-              >
-                <Image
-                  src={item.image}
-                  alt={`${item.name} — главный экран`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 620px"
-                  className="object-cover object-top"
-                />
-              </a>
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative block aspect-[16/9] border border-paper/25 bg-paper-2 transition-colors hover:border-paper/60"
-              >
-                <Image
-                  src={item.image2}
-                  alt={`${item.name} — внутренний экран`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 620px"
-                  className="object-cover object-top"
-                />
-              </a>
+              {item.images.map((src, idx) => (
+                <a
+                  key={src}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "relative block border border-paper/25 bg-paper-2 transition-colors hover:border-paper/60",
+                    idx === 0 ? "aspect-[16/10]" : "aspect-[16/9]",
+                  )}
+                >
+                  <Image
+                    src={src}
+                    alt={`${item.name} — ${idx === 0 ? "главный экран" : "внутренний экран"}`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 620px"
+                    className="object-cover object-top"
+                  />
+                </a>
+              ))}
             </div>
 
             <div className="px-5 py-8 md:px-8 md:py-10">

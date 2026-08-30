@@ -12,7 +12,10 @@ import { extname, join, basename } from "node:path";
 import sharp from "sharp";
 
 // Пары «источник → назначение». Добавляй сюда новые папки при необходимости.
-const JOBS = [{ src: "assets/cases", out: "public/cases" }];
+const JOBS = [
+  { src: "assets/cases", out: "public/cases" },
+  { src: "assets/about", out: "public/about" },
+];
 
 const MAX_WIDTH = 1600; // ретина-2x для слота ~640px — больше не нужно
 const QUALITY = 78;
