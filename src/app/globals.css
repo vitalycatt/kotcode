@@ -104,6 +104,17 @@
   }
 }
 
+/* Скроллбар скрыт визуально, скролл остаётся функциональным */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* старый Edge/IE */
+}
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none; /* Chrome, Safari */
+}
+
 /* Тёмная поверхность — единственное отступление: блок кейсов (#111, белый текст) */
 .surface-ink {
   --background: var(--ink);

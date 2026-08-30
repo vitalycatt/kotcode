@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 export function Header() {
   return (
-    <header className="border-b">
+    <header className="sticky top-0 z-50 border-b bg-paper">
       <Container className="flex">
         {/* Монограмма в рамке слева */}
         <a
