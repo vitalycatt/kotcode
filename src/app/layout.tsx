@@ -51,6 +51,12 @@ export const metadata: Metadata = {
     title: site.seo.title,
     description: site.seo.description,
   },
+  // Подтверждение прав в Search Console и Яндекс.Вебмастере.
+  // Токены кладём в env — тег появляется, только если они заданы.
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+    yandex: process.env.YANDEX_VERIFICATION,
+  },
 };
 
 const businessId = `${siteUrl}/#business`;
