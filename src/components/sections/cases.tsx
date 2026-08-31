@@ -86,6 +86,12 @@ export function Cases() {
                   <span className="text-paper">Решение. </span>
                   {item.solution}
                 </p>
+                {"result" in item && item.result && (
+                  <p>
+                    <span className="text-paper">Результат. </span>
+                    {item.result}
+                  </p>
+                )}
               </div>
 
               <GoalLink
