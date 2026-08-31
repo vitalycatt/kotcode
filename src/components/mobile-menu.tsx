@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -41,15 +42,15 @@ export function MobileMenu() {
           )}
         >
           {site.nav.map((item) => (
-            <a
+            <Link
               key={item.id}
-              href={`#${item.id}`}
+              href={`/#${item.id}`}
               tabIndex={open ? undefined : -1}
               onClick={() => setOpen(false)}
               className="border-t px-5 py-4 text-[13px] font-medium uppercase tracking-[0.06em] hover:text-accent"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
       </div>

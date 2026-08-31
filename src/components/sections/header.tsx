@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Container } from "@/components/container";
 import { GoalLink } from "@/components/goal-link";
 import { Logo } from "@/components/logo";
@@ -9,20 +11,25 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b bg-paper">
       <Container className="flex">
         {/* Монограмма в рамке слева */}
-        <a
-          href="#top"
+        <Link
+          href="/"
           aria-label={site.brand.name}
           className="border-r px-5 py-4 text-[17px]"
         >
           <Logo />
-        </a>
+        </Link>
 
-        {/* Навигация — UPPERCASE, мелкая, с трекингом */}
+        {/* Навигация — UPPERCASE, мелкая, с трекингом. Якоря с ведущим "/",
+            чтобы работали и с внутренних страниц услуг. */}
         <nav className="hidden flex-1 items-center gap-7 px-5 text-xs font-medium uppercase tracking-[0.06em] md:flex">
           {site.nav.map((item) => (
-            <a key={item.id} href={`#${item.id}`} className="hover:text-accent">
+            <Link
+              key={item.id}
+              href={`/#${item.id}`}
+              className="hover:text-accent"
+            >
               {item.label}
-            </a>
+            </Link>
           ))}
         </nav>
 

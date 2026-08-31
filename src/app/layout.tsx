@@ -119,18 +119,6 @@ const jsonLd = {
       inLanguage: "ru-RU",
       publisher: { "@id": businessId },
     },
-    {
-      "@type": "FAQPage",
-      "@id": `${siteUrl}/#faq`,
-      mainEntity: site.faq.items.map((item) => ({
-        "@type": "Question",
-        name: item.q,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.a,
-        },
-      })),
-    },
   ],
 };
 

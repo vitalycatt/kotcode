@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Btn } from "@/components/btn";
 import { Container } from "@/components/container";
 import { Eyebrow } from "@/components/section";
@@ -19,6 +21,9 @@ export function Pricing() {
       <div className="mt-12 flex flex-col md:mt-16 md:flex-row md:border-t">
         {site.services.packages.map((pkg, i) => {
           const accent = pkg.popular;
+          const detailsSlug = site.servicePages.find(
+            (sp) => sp.packageId === pkg.id,
+          )?.slug;
           return (
             <div
               key={pkg.id}
@@ -102,6 +107,20 @@ export function Pricing() {
                   {site.cta.primary}
                 </Btn>
               </div>
+
+              {detailsSlug && (
+                <Link
+                  href={`/${detailsSlug}`}
+                  className={cn(
+                    "mt-3 inline-flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] transition-colors",
+                    accent
+                      ? "text-on-accent hover:text-on-accent/70"
+                      : "text-ink hover:text-accent",
+                  )}
+                >
+                  Подробнее об услуге →
+                </Link>
+              )}
             </div>
           );
         })}
