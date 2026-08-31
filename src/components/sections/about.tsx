@@ -26,6 +26,7 @@ export function About() {
           {site.about.name}
         </p>
         <p className="mt-1 text-sm text-caption">{site.about.role}</p>
+        <p className="mt-1 text-sm text-caption">{site.about.meta}</p>
         <p className="mt-5 max-w-xl text-caption">{site.about.text}</p>
 
         <div className="mt-8">

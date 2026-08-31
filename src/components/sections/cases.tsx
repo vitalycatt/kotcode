@@ -55,8 +55,25 @@ export function Cases() {
                     alt={`${item.name} — ${idx === 0 ? "главный экран" : "внутренний экран"}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 620px"
-                    className="object-cover object-top"
+                    className={cn(
+                      "object-cover object-top",
+                      // на десктопе первый кадр заменяет видео-запись проекта
+                      idx === 0 && "video" in item && item.video && "md:hidden",
+                    )}
                   />
+                  {idx === 0 && "video" in item && item.video && (
+                    <video
+                      className="absolute inset-0 hidden size-full object-cover object-top md:block"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      poster={src}
+                    >
+                      <source src={item.video} type="video/mp4" />
+                    </video>
+                  )}
                 </GoalLink>
               ))}
             </div>

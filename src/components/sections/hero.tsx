@@ -69,7 +69,7 @@ export function Hero() {
                   : "")
               }
             >
-              <div className="text-[30px] font-semibold tracking-[-0.02em]">
+              <div className="text-2xl font-semibold leading-[1.05] tracking-[-0.02em] text-balance sm:text-[30px]">
                 {m.n}
               </div>
               <div className="mt-1 text-xs text-caption">{m.l}</div>

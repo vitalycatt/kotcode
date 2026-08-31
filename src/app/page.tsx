@@ -1,9 +1,8 @@
 import { Header } from "@/components/sections/header";
 import { Hero } from "@/components/sections/hero";
-import { Problems } from "@/components/sections/problems";
+import { Cases } from "@/components/sections/cases";
 import { Pricing } from "@/components/sections/pricing";
 import { Guarantees } from "@/components/sections/guarantees";
-import { Cases } from "@/components/sections/cases";
 import { Process } from "@/components/sections/process";
 import { About } from "@/components/sections/about";
 import { Faq } from "@/components/sections/faq";
@@ -23,10 +22,9 @@ export default function Home() {
         <Header />
         <main>
           <Hero />
-          <Problems />
+          <Cases />
           <Pricing />
           <Guarantees />
-          <Cases />
           <Process />
           <About />
           <Faq />
