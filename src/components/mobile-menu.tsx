@@ -22,7 +22,7 @@ export function MobileMenu() {
         aria-label="Меню"
         aria-expanded={open}
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center border-l px-5 transition-colors hover:bg-ink hover:text-paper"
+        className="flex cursor-pointer items-center border-l px-5 transition-colors hover:bg-ink hover:text-paper"
       >
         {open ? <X className="size-5" /> : <Menu className="size-5" />}
       </button>

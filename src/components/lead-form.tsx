@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, Send } from "lucide-react";
 
 import { trackGoal } from "@/lib/analytics";
@@ -14,14 +14,67 @@ type Status = "idle" | "submitting" | "error" | "success";
 // Поля на синей плашке: прозрачный фон, белая рамка, белый текст.
 const fieldClass =
   "w-full border border-on-accent/40 bg-transparent px-4 py-3.5 text-on-accent " +
-  "placeholder:text-on-accent/50 transition-colors focus:border-on-accent focus:outline-none";
+  "placeholder:text-on-accent/50 transition duration-500 ease-out focus:border-on-accent focus:outline-none";
 
 const labelClass =
   "mb-2 block text-xs font-medium uppercase tracking-[0.06em] text-on-accent/70";
 
+// Подсветка-гайд: белое кольцо с отступом + мягкое белое свечение (halo).
+// Кольцо читается на прозрачных полях, а свечение выходит за края —
+// поэтому видно и вокруг белой кнопки.
+const guideRing =
+  "ring-2 ring-on-accent ring-offset-2 ring-offset-accent shadow-[0_0_40px_rgba(255,255,255,0.9),0_0_22px_rgba(255,255,255,0.5)]";
+
 /** Форма «Прислать разбор» — заявка уходит в Telegram через /api/lead. */
 export function LeadForm() {
   const [status, setStatus] = useState<Status>("idle");
+  // 0 — выкл, 1 — поле «сайт», 2 — поле «контакт», 3 — кнопка.
+  const [guideStep, setGuideStep] = useState(0);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const running = useRef(false);
+
+  // Гайд-подсветка: по клику на любую ссылку к форме (#contact) по очереди
+  // подсвечиваем два поля и кнопку. Слушатель делегированный — кнопки не трогаем.
+  useEffect(() => {
+    const clearTimers = () => {
+      timers.current.forEach(clearTimeout);
+      timers.current = [];
+    };
+
+    const runGuide = () => {
+      if (running.current) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      running.current = true;
+      clearTimers();
+      // задержка — ждём, пока доедет плавный скролл к форме
+      timers.current.push(setTimeout(() => setGuideStep(1), 500));
+      timers.current.push(setTimeout(() => setGuideStep(2), 1400));
+      timers.current.push(setTimeout(() => setGuideStep(3), 2300));
+      timers.current.push(
+        setTimeout(() => {
+          setGuideStep(0);
+          running.current = false;
+        }, 3300),
+      );
+    };
+
+    const onClick = (e: MouseEvent) => {
+      const link = (e.target as HTMLElement).closest?.("a[href]");
+      const href = link?.getAttribute("href");
+      if (href && href.endsWith("#contact")) runGuide();
+    };
+    const onHash = () => {
+      if (window.location.hash === "#contact") runGuide();
+    };
+
+    document.addEventListener("click", onClick);
+    window.addEventListener("hashchange", onHash);
+    return () => {
+      document.removeEventListener("click", onClick);
+      window.removeEventListener("hashchange", onHash);
+      clearTimers();
+    };
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -72,7 +125,10 @@ export function LeadForm() {
   return (
     <form onSubmit={onSubmit} noValidate className="w-full">
       {/* honeypot: скрыт от людей, ловит ботов */}
-      <div aria-hidden className="absolute left-[-9999px] h-0 w-0 overflow-hidden">
+      <div
+        aria-hidden
+        className="absolute left-[-9999px] h-0 w-0 overflow-hidden"
+      >
         <label>
           Компания
           <input type="text" name="company" tabIndex={-1} autoComplete="off" />
@@ -91,7 +147,7 @@ export function LeadForm() {
             required
             maxLength={500}
             placeholder={form.site.placeholder}
-            className={fieldClass}
+            className={cn(fieldClass, guideStep === 1 && guideRing)}
           />
         </div>
 
@@ -106,7 +162,7 @@ export function LeadForm() {
             required
             maxLength={500}
             placeholder={form.contact.placeholder}
-            className={fieldClass}
+            className={cn(fieldClass, guideStep === 2 && guideRing)}
           />
         </div>
       </div>
@@ -117,8 +173,9 @@ export function LeadForm() {
         className={cn(
           "mt-6 inline-flex w-full items-center justify-center gap-2 border border-on-accent",
           "bg-on-accent px-6 py-3.5 text-xs font-medium uppercase tracking-[0.08em] text-accent",
-          "transition-colors hover:bg-transparent hover:text-on-accent",
+          "cursor-pointer transition duration-500 ease-out hover:bg-transparent hover:text-on-accent",
           "disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto",
+          guideStep === 3 && guideRing,
         )}
       >
         <Send className="size-4" />
