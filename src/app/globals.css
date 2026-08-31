@@ -108,6 +108,19 @@
 html {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* старый Edge/IE */
+  scroll-behavior: smooth; /* плавный переход к якорям */
+}
+
+/* Якорь не должен уезжать под липкую шапку (~56px + воздух) */
+[id] {
+  scroll-margin-top: 64px;
+}
+
+/* Уважаем системную настройку «меньше движения» */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 html::-webkit-scrollbar {
   width: 0;

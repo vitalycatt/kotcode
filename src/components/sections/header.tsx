@@ -1,6 +1,7 @@
 import { Container } from "@/components/container";
 import { GoalLink } from "@/components/goal-link";
 import { Logo } from "@/components/logo";
+import { MobileMenu } from "@/components/mobile-menu";
 import { site } from "@/content/site";
 
 export function Header() {
@@ -32,8 +33,11 @@ export function Header() {
           goalParams={{ place: "header" }}
           className="ml-auto flex items-center border-l px-5 text-xs font-medium uppercase tracking-[0.06em] transition-colors hover:bg-ink hover:text-paper md:ml-0"
         >
-          Написать
+          {site.cta.write}
         </GoalLink>
+
+        {/* Гамбургер с якорями — только мобильный */}
+        <MobileMenu />
       </Container>
     </header>
   );

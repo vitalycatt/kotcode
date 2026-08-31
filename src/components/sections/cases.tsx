@@ -66,7 +66,7 @@ export function Cases() {
                 {item.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="border border-paper px-2 py-1 text-[10px] font-medium uppercase tracking-[0.08em]"
+                    className="border border-paper px-2 py-1 text-[12px] font-medium uppercase tracking-[0.08em]"
                   >
                     {tag}
                   </span>

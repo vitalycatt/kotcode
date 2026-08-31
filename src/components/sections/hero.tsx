@@ -49,7 +49,7 @@ export function Hero() {
           >
             <source src="/hero/hero.mp4" type="video/mp4" />
           </video>
-          <div className="absolute bottom-4 left-5 text-[11px] uppercase tracking-[0.06em] text-caption">
+          <div className="absolute bottom-4 left-5 text-[13px] uppercase tracking-[0.06em] text-caption">
             {site.hero.videoCaption}
           </div>
         </div>

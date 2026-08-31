@@ -8,7 +8,7 @@ import { About } from "@/components/sections/about";
 import { Faq } from "@/components/sections/faq";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
-import { FloatingContact } from "@/components/floating-contact";
+import { MobileCtaBar } from "@/components/mobile-cta-bar";
 
 export default function Home() {
   return (
@@ -32,7 +32,7 @@ export default function Home() {
         </main>
         <Footer />
       </div>
-      <FloatingContact />
+      <MobileCtaBar />
     </>
   );
 }

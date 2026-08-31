@@ -59,6 +59,7 @@ export const site = {
 
   cta: {
     primary: "Получить бесплатный разбор",
+    bar: "Бесплатный разбор",
     write: "Написать",
     writeIn: (channel: string) => `Написать в ${channel}`,
   },

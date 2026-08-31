@@ -34,7 +34,7 @@ export function Pricing() {
                   {pkg.name}
                 </h3>
                 {accent && (
-                  <span className="border border-on-accent px-2 py-1 text-[10px] font-medium uppercase tracking-[0.08em]">
+                  <span className="border border-on-accent px-2 py-1 text-[12px] font-medium uppercase tracking-[0.08em]">
                     Популярное
                   </span>
                 )}
