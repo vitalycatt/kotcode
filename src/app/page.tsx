@@ -1,13 +1,13 @@
-import { Header } from "@/components/sections/header";
+import { Faq } from "@/components/sections/faq";
 import { Hero } from "@/components/sections/hero";
 import { Cases } from "@/components/sections/cases";
-import { Pricing } from "@/components/sections/pricing";
-import { Guarantees } from "@/components/sections/guarantees";
-import { Process } from "@/components/sections/process";
 import { About } from "@/components/sections/about";
-import { Faq } from "@/components/sections/faq";
-import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
+import { Header } from "@/components/sections/header";
+import { Pricing } from "@/components/sections/pricing";
+import { Process } from "@/components/sections/process";
+import { Contact } from "@/components/sections/contact";
+import { Guarantees } from "@/components/sections/guarantees";
 import { MobileCtaBar } from "@/components/mobile-cta-bar";
 
 export default function Home() {
