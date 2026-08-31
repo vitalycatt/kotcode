@@ -3,7 +3,7 @@ import { Inter_Tight } from "next/font/google";
 import "./globals.css";
 
 import { YandexMetrica } from "@/components/analytics/yandex-metrica";
-import { site } from "@/content/site";
+import { contacts, site } from "@/content/site";
 
 const yandexMetricaId = process.env.NEXT_PUBLIC_YANDEX_METRICA_ID;
 
@@ -20,40 +20,118 @@ const siteUrl = `https://${site.brand.domain}`;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.brand.name} — ${site.brand.tagline}`,
+    default: site.seo.title,
     template: `%s · ${site.brand.name}`,
   },
-  description: site.hero.subtitle,
+  description: site.seo.description,
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
-    "сайт для бизнеса",
+    "создание сайтов",
+    "разработка сайтов",
+    "сайт под ключ",
     "лендинг",
     "интернет-магазин",
     "телеграм-бот",
-    "разработка сайтов",
+    "сайт Брест",
+    "разработка сайтов Беларусь",
+    "заказать сайт СНГ",
   ],
   openGraph: {
     type: "website",
     locale: "ru_RU",
     url: siteUrl,
     siteName: site.brand.name,
-    title: `${site.brand.name} — ${site.brand.tagline}`,
-    description: site.hero.subtitle,
+    title: site.seo.title,
+    description: site.seo.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.brand.name} — ${site.brand.tagline}`,
-    description: site.hero.subtitle,
+    title: site.seo.title,
+    description: site.seo.description,
   },
 };
 
-// JSON-LD разметка организации — базовая, расширим на этапе SEO.
+const businessId = `${siteUrl}/#business`;
+
+// Пакет как Offer: числовую цену вытаскиваем из строки («от $350» → 350),
+// для «по задаче» цену не указываем.
+function packageOffer(pkg: (typeof site.services.packages)[number]) {
+  const price = pkg.price.match(/\d+/)?.[0];
+  return {
+    "@type": "Offer",
+    itemOffered: {
+      "@type": "Service",
+      name: pkg.name,
+      description: pkg.description,
+    },
+    ...(price ? { price, priceCurrency: "USD" } : {}),
+  };
+}
+
+// JSON-LD граф: бизнес (LocalBusiness + гео), сайт и FAQ для сниппетов в SERP.
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: site.brand.name,
-  url: siteUrl,
-  description: site.hero.subtitle,
-  areaServed: "RU",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": businessId,
+      name: site.brand.name,
+      url: siteUrl,
+      image: `${siteUrl}/opengraph-image.png`,
+      description: site.seo.description,
+      priceRange: site.business.priceRange,
+      areaServed: site.business.areaServed.map((code) => ({
+        "@type": "Country",
+        name: code,
+      })),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: site.business.city,
+        addressRegion: site.business.region,
+        addressCountry: site.business.country,
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: site.business.geo.lat,
+        longitude: site.business.geo.lng,
+      },
+      sameAs: [contacts.instagram.href, contacts.telegram.href],
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: contacts.email.handle,
+        url: contacts.telegram.href,
+        availableLanguage: ["ru"],
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: site.services.title,
+        itemListElement: site.services.packages.map(packageOffer),
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: site.brand.name,
+      inLanguage: "ru-RU",
+      publisher: { "@id": businessId },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${siteUrl}/#faq`,
+      mainEntity: site.faq.items.map((item) => ({
+        "@type": "Question",
+        name: item.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.a,
+        },
+      })),
+    },
+  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

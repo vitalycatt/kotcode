@@ -34,6 +34,7 @@ export function Hero() {
             src="/hero/hero-poster.webp"
             alt="Пример работы — интернет-магазин Gamma Gracia"
             fill
+            priority
             sizes="100vw"
             className="object-cover object-top md:hidden"
           />

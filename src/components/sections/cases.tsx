@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 
+import { CaseVideo } from "@/components/case-video";
 import { Container } from "@/components/container";
 import { GoalLink } from "@/components/goal-link";
 import { cn } from "@/lib/utils";
@@ -62,17 +63,11 @@ export function Cases() {
                     )}
                   />
                   {idx === 0 && "video" in item && item.video && (
-                    <video
-                      className="absolute inset-0 hidden size-full object-cover object-top md:block"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="metadata"
+                    <CaseVideo
+                      src={item.video}
                       poster={src}
-                    >
-                      <source src={item.video} type="video/mp4" />
-                    </video>
+                      className="absolute inset-0 hidden size-full object-cover object-top md:block"
+                    />
                   )}
                 </GoalLink>
               ))}
